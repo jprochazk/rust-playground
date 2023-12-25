@@ -2,6 +2,7 @@
   --primary-font: 'Open Sans', sans-serif;
   --rust: #a42;
   --rust-dark: #80331a;
+  --background-color: #e1e1db;
   --border-color: #bbb;
   --border: 1px solid var(--border-color);
   --header-main-border: #dedede;
@@ -49,6 +50,64 @@
   --button-secondary-active-color: color-mix(in hsl, black, white 30%);
 }
 
+/* Dark mode overrides */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --rust: #81331a;
+    --rust-dark: #612714;
+    --background-color: #292c2e;
+    --border-color: #404548;
+    --border: 1px solid var(--border-color);
+    --header-main-border: #363b3d;
+    --header-transition: 0.2s ease-in-out;
+    --header-tint: #245681;
+    --header-border-radius: 4px;
+    --header-accent-border: #bdbdbd;
+
+    /* The big red button */
+
+    --button-primary-color: #dcdbd8;
+    --button-primary-bg-color: var(--rust);
+    --button-primary-border-color: var(--rust-dark);
+    --button-primary-bg-color-light: color-mix(in hsl, var(--button-primary-bg-color), white);
+    --button-primary-border-color-light: color-mix(
+      in hsl,
+      var(--button-primary-border-color),
+      white
+    );
+
+    /* Clicked */
+    --button-primary-active-color: color-mix(in hsl, white, black 30%);
+
+    /* Not the big red button */
+
+    --button-secondary-color: #b4aea6;
+    --button-secondary-bg-color-top: #17191a;
+    --button-secondary-bg-color-bottom: #1a1c1d;
+    --button-secondary-border-color: color-mix(
+      in hsl,
+      var(--button-secondary-bg-color-bottom),
+      black 20%
+    );
+
+    /* Disabled */
+    --button-secondary-bg-color-light: color-mix(
+      in hsl,
+      var(--button-secondary-bg-color-bottom),
+      white
+    );
+    --button-secondary-border-color-light: color-mix(
+      in hsl,
+      var(--button-secondary-border-color),
+      white
+    );
+    --button-secondary-color-light: color-mix(in hsl, var(--button-secondary-color), white);
+
+    /* Clicked */
+    --button-secondary-active-color: color-mix(in hsl, black, white 30%);
+  }
+}
+
 /* Modify normalized styles */
 button,
 input,
@@ -70,7 +129,7 @@ html {
 }
 
 body {
-  background-color: #e1e1db;
+  background-color: var(--background-color);
   padding: 0 1em;
   font-family: var(--primary-font);
 }
