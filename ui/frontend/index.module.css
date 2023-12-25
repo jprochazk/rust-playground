@@ -1,5 +1,6 @@
 :root {
   --primary-font: 'Open Sans', sans-serif;
+  --font-color: #444;
   --rust: #a42;
   --rust-dark: #80331a;
   --background-color: #e1e1db;
@@ -48,6 +49,10 @@
 
   /* Clicked */
   --button-secondary-active-color: color-mix(in hsl, black, white 30%);
+
+  /* Output tabs */
+  --output-background-tab: #fcfcfc;
+  --output-current-tab: #f9ffff;
 }
 
 /* Dark mode overrides */
@@ -55,6 +60,7 @@
   :root {
     --rust: #81331a;
     --rust-dark: #612714;
+    --font-color: #b4aea6;
     --background-color: #292c2e;
     --border-color: #404548;
     --border: 1px solid var(--border-color);
@@ -105,6 +111,10 @@
 
     /* Clicked */
     --button-secondary-active-color: color-mix(in hsl, black, white 30%);
+
+    /* Output tabs */
+    --output-background-tab: #191b1c;
+    --output-current-tab: #343434;
   }
 }
 
@@ -129,6 +139,7 @@ html {
 }
 
 body {
+  color: var(--font-color);
   background-color: var(--background-color);
   padding: 0 1em;
   font-family: var(--primary-font);
