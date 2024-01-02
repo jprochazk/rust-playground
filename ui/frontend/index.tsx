@@ -25,8 +25,9 @@ import { gotoPosition } from './reducers/position';
 import { addImport, editCode, enableFeatureGate } from './reducers/code';
 import { browserWidthChanged } from './reducers/browser';
 import { selectText } from './reducers/selection';
-import { useAppDispatch, useAppSelector } from './hooks';
-import { resolvedThemeSelector } from './selectors';
+import { useAppSelector } from './hooks';
+import { themeSelector } from './selectors';
+import { Theme } from './types';
 
 const store = configureStore(window);
 
@@ -85,9 +86,13 @@ window.rustPlayground = {
 };
 
 const ThemeProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
-  const theme = useAppSelector(resolvedThemeSelector);
+  const theme = useAppSelector(themeSelector);
   React.useEffect(() => {
-    document.documentElement.dataset['theme'] = theme;
+    if (theme !== Theme.System) {
+      document.documentElement.dataset['theme'] = theme;
+    } else {
+      delete document.documentElement.dataset['theme'];
+    }
   }, [theme]);
 
   return <>{children}</>;

@@ -1,4 +1,4 @@
-:root {
+@define-mixin light-theme-vars {
   --primary-font: 'Open Sans', sans-serif;
   --font-color: #444;
   --font-color-high-contrast: black;
@@ -66,8 +66,7 @@
   --output-current-tab: #f9ffff;
 }
 
-/* Automatic dark mode */
-[data-theme='dark'] {
+@define-mixin dark-theme-vars {
   --rust: #81331a;
   --rust-dark: #612714;
   --font-color: #b4aea6;
@@ -132,6 +131,32 @@
   /* Output tabs */
   --output-background-tab: #191b1c;
   --output-current-tab: #343434;
+}
+
+/* Light theme
+ *
+ * Will be used if:
+ *    (configuration.theme == system && prefers-color-scheme == light)
+ * || (configuration.theme == light)
+ */
+:root,
+[data-theme='light']:root {
+  @mixin light-theme-vars;
+}
+
+/* Light theme
+ *
+ * Will be used if:
+ *    (configuration.theme == system && prefers-color-scheme == dark)
+ * || (configuration.theme == dark)
+ */
+@media (prefers-color-scheme: dark) {
+  :root {
+    @mixin dark-theme-vars;
+  }
+}
+[data-theme='dark']:root {
+  @mixin dark-theme-vars;
 }
 
 /* Modify normalized styles */

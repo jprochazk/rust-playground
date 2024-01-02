@@ -74,11 +74,6 @@ export enum Theme {
   System = 'system',
 }
 
-export enum ResolvedTheme {
-  Light = 'light',
-  Dark = 'dark',
-}
-
 export enum AssemblyFlavor {
   Att = 'att',
   Intel = 'intel',
