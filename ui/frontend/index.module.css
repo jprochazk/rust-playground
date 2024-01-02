@@ -34,6 +34,11 @@
   --button-secondary-color: #444;
   --button-secondary-bg-color-top: #fff;
   --button-secondary-bg-color-bottom: #f9f9f9;
+  --button-secondary-bg-color: linear-gradient(
+    to bottom,
+    var(--button-secondary-bg-color-top),
+    var(--button-secondary-bg-color-bottom)
+  );
   --button-secondary-border-color: color-mix(
     in hsl,
     var(--button-secondary-bg-color-bottom),
@@ -102,6 +107,11 @@
     --button-secondary-color: #b4aea6;
     --button-secondary-bg-color-top: #17191a;
     --button-secondary-bg-color-bottom: #1a1c1d;
+    --button-secondary-bg-color: linear-gradient(
+      to bottom,
+      var(--button-secondary-bg-color-top),
+      var(--button-secondary-bg-color-bottom)
+    );
     --button-secondary-border-color: color-mix(
       in hsl,
       var(--button-secondary-bg-color-bottom),
