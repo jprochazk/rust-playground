@@ -4,7 +4,7 @@
 
 import { State } from './reducers';
 import {removeVersion, initializeStorage, PartialState} from './storage';
-import { AssemblyFlavor, DemangleAssembly, Editor, Orientation, PairCharacters, ProcessAssembly } from './types';
+import { AssemblyFlavor, DemangleAssembly, Editor, Orientation, PairCharacters, ProcessAssembly, Theme } from './types';
 import { codeSelector } from './selectors';
 
 const CURRENT_VERSION = 2;
@@ -24,6 +24,9 @@ interface V2Configuration {
     };
     monaco: {
       theme: string;
+    };
+    website: {
+      theme: Theme;
     };
     orientation: Orientation;
     assemblyFlavor: AssemblyFlavor;
@@ -70,6 +73,9 @@ export function serialize(state: State): string {
       monaco: {
         theme: state.configuration.monaco.theme,
       },
+      website: {
+        theme: state.configuration.website.theme,
+      },
       orientation: state.configuration.orientation,
       assemblyFlavor: state.configuration.assemblyFlavor,
       demangleAssembly: state.configuration.demangleAssembly,
@@ -93,6 +99,7 @@ function migrateV1(state: V1Configuration): CurrentConfiguration {
       ...configuration,
       ace: { theme, keybinding, pairCharacters },
       monaco: { theme: 'vscode-dark-plus' },
+      website: { theme: Theme.System },
       editor: editor === 'advanced' ? Editor.Ace : Editor.Simple,
     },
     version: 2,

@@ -14,6 +14,7 @@ import {
   Orientation,
   PairCharacters,
   ProcessAssembly,
+  Theme,
 } from './types';
 
 const MONACO_THEMES = [
@@ -24,6 +25,7 @@ const ConfigMenu: React.FC = () => {
   const keybinding = useAppSelector((state) => state.configuration.ace.keybinding);
   const aceTheme = useAppSelector((state) => state.configuration.ace.theme);
   const monacoTheme = useAppSelector((state) => state.configuration.monaco.theme);
+  const websiteTheme = useAppSelector((state) => state.configuration.website.theme);
   const orientation = useAppSelector((state) => state.configuration.orientation);
   const editorStyle = useAppSelector((state) => state.configuration.editor);
   const pairCharacters = useAppSelector((state) => state.configuration.ace.pairCharacters);
@@ -34,6 +36,7 @@ const ConfigMenu: React.FC = () => {
   const dispatch = useAppDispatch();
   const changeAceTheme = useCallback((t: string) => dispatch(config.changeAceTheme(t)), [dispatch]);
   const changeMonacoTheme = useCallback((t: string) => dispatch(config.changeMonacoTheme(t)), [dispatch]);
+  const changeWebsiteTheme = useCallback((t: Theme) => dispatch(config.changeWebsiteTheme(t)), [dispatch]);
   const changeKeybinding = useCallback((k: string) => dispatch(config.changeKeybinding(k)), [dispatch]);
   const changeOrientation = useCallback((o: Orientation) => dispatch(config.changeOrientation(o)), [dispatch]);
   const changeEditorStyle = useCallback((e: Editor) => dispatch(config.changeEditor(e)), [dispatch]);
@@ -106,6 +109,11 @@ const ConfigMenu: React.FC = () => {
           <option value={Orientation.Automatic}>Automatic</option>
           <option value={Orientation.Horizontal}>Horizontal</option>
           <option value={Orientation.Vertical}>Vertical</option>
+        </SelectConfig>
+        <SelectConfig name="Theme" value={websiteTheme} onChange={changeWebsiteTheme}>
+          <option value={Theme.Dark}>Dark</option>
+          <option value={Theme.Light}>Light</option>
+          <option value={Theme.System}>System</option>
         </SelectConfig>
       </MenuGroup>
 

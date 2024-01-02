@@ -25,6 +25,8 @@ import { gotoPosition } from './reducers/position';
 import { addImport, editCode, enableFeatureGate } from './reducers/code';
 import { browserWidthChanged } from './reducers/browser';
 import { selectText } from './reducers/selection';
+import { useAppDispatch, useAppSelector } from './hooks';
+import { resolvedThemeSelector } from './selectors';
 
 const store = configureStore(window);
 
@@ -82,13 +84,24 @@ window.rustPlayground = {
   },
 };
 
+const ThemeProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
+  const theme = useAppSelector(resolvedThemeSelector);
+  React.useEffect(() => {
+    document.documentElement.dataset['theme'] = theme;
+  }, [theme]);
+
+  return <>{children}</>;
+};
+
 const container = document.getElementById('playground');
 if (container) {
   const root = createRoot(container);
   root.render(
     <Provider store={store}>
       <Router store={store} reducer={playgroundApp}>
-        <PageSwitcher />
+        <ThemeProvider>
+          <PageSwitcher />
+        </ThemeProvider>
       </Router>
     </Provider>,
   );

@@ -68,6 +68,17 @@ export enum Orientation {
   Vertical = 'vertical',
 }
 
+export enum Theme {
+  Light = 'light',
+  Dark = 'dark',
+  System = 'system',
+}
+
+export enum ResolvedTheme {
+  Light = 'light',
+  Dark = 'dark',
+}
+
 export enum AssemblyFlavor {
   Att = 'att',
   Intel = 'intel',

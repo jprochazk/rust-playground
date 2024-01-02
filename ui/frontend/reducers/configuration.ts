@@ -14,6 +14,7 @@ import {
   PrimaryAction,
   PrimaryActionAuto,
   ProcessAssembly,
+  Theme,
 } from '../types';
 
 interface State {
@@ -25,6 +26,9 @@ interface State {
   };
   monaco: {
     theme: string;
+  };
+  website: {
+    theme: Theme;
   };
   orientation: Orientation;
   assemblyFlavor: AssemblyFlavor;
@@ -50,6 +54,9 @@ const initialState: State = {
   },
   monaco: {
     theme: 'vscode-dark-plus',
+  },
+  website: {
+    theme: Theme.System,
   },
   orientation: Orientation.Automatic,
   assemblyFlavor: AssemblyFlavor.Att,
@@ -106,6 +113,10 @@ const slice = createSlice({
       state.monaco.theme = action.payload;
     },
 
+    changeWebsiteTheme: (state, action: PayloadAction<Theme>) => {
+      state.website.theme = action.payload;
+    },
+
     changeOrientation: (state, action: PayloadAction<Orientation>) => {
       state.orientation = action.payload;
     },
@@ -135,6 +146,7 @@ export const {
   changeKeybinding,
   changeMode,
   changeMonacoTheme,
+  changeWebsiteTheme,
   changeOrientation,
   changePairCharacters,
   changePrimaryAction,

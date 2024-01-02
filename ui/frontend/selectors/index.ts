@@ -10,6 +10,8 @@ import {
   Orientation,
   PrimaryActionAuto,
   PrimaryActionCore,
+  ResolvedTheme,
+  Theme,
   Version,
 } from '../types';
 
@@ -504,4 +506,31 @@ export const compileRequestPayloadSelector = createSelector(
     processAssembly: configuration.processAssembly,
     backtrace,
   }),
+);
+
+export const themeSelector = createSelector(
+  (state: State) => state,
+  (state) => state.configuration.website.theme,
+);
+
+export const resolvedThemeSelector = createSelector(
+  (state: State) => state.configuration.website.theme,
+  (theme) => {
+    switch (theme) {
+      case Theme.Dark:
+        return ResolvedTheme.Dark;
+      case Theme.Light:
+        return ResolvedTheme.Light;
+      case Theme.System: {
+        const prefersDarkTheme = window.matchMedia
+          ? window.matchMedia('(prefers-color-scheme: dark)').matches
+          : false;
+        if (prefersDarkTheme) {
+          return ResolvedTheme.Dark;
+        } else {
+          return ResolvedTheme.Light;
+        }
+      }
+    }
+  },
 );
