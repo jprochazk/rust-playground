@@ -122,3 +122,8 @@ $radius: 4px;
   aspect-ratio: 1/1;
   justify-items: center;
 }
+
+a.iconLink svg,
+a.iconLink:visited svg {
+  fill: var(--font-color) !important;
+}
