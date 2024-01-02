@@ -42,7 +42,7 @@
 .body {
   border: var(--border);
   border-top: none;
-  background-color: var(--background-color);
+  background-color: var(--output-current-tab);
   padding: 0.5em;
   height: 100%;
   overflow: scroll;
